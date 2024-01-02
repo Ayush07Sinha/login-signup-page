@@ -6,6 +6,7 @@ const app=express();
 app.use(cors());
 app.use(express.json());
 
+###Connecting to a databse
 const db=mysql.createConnection({
     host:"localhost",
     user:"root",
@@ -13,6 +14,7 @@ const db=mysql.createConnection({
     database:"credentials"
 })
 
+###Record creation in the signup table when user enter its credentials
 app.post('/credentials',(req,res)=>{
     const sql="INSERT INTO signup(`name`,`email`,`password`) VALUES(?)";
     const values=[
@@ -29,6 +31,7 @@ app.post('/credentials',(req,res)=>{
     })
 })
 
+###Retrieving the list of records fro the signup table
 app.post('/signup',(req,res)=>{
     const sql="SELECT * FROM signup WHERE `email`=? AND `password`=?";
     
